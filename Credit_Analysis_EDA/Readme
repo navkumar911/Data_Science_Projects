@@ -1,0 +1,600 @@
+Home Credit Loan Default Analysis - Exploratory Data Analysis
+
+Project Overview
+
+This project focuses on performing Exploratory Data Analysis (EDA) on Home Credit's loan application data.
+
+The objective is to identify patterns and characteristics associated with clients who have difficulties making loan payments.
+
+The analysis uses two datasets:
+
+1. application_data.csv
+2. previous_application.csv
+
+The analysis explores customer demographics, financial information, education, occupation, housing type, loan characteristics and previous loan application history to identify factors associated with loan payment difficulties.
+
+Problem Statement
+
+Home Credit provides loans to customers who may have limited access to traditional banking services.
+
+The objective of this analysis is to understand the characteristics of customers who experience difficulties in repaying their loans and identify patterns that may help financial institutions make better lending decisions.
+
+The target variable is TARGET:
+
+1. TARGET = 0 represents clients with no payment difficulties.
+2. TARGET = 1 represents clients with payment difficulties.
+
+Objectives
+
+1. Understand the structure and characteristics of the application dataset.
+2. Identify and handle missing values.
+3. Clean inconsistent and incorrect values.
+4. Analyze numerical and categorical variables.
+5. Identify outliers in numerical variables.
+6. Analyze the imbalance between defaulters and non-defaulters.
+7. Compare customer characteristics between TARGET 0 and TARGET 1.
+8. Analyze relationships between demographic, financial and loan-related variables.
+9. Identify correlations between numerical variables.
+10. Analyze previous loan applications.
+11. Merge current application data with previous application data.
+12. Identify patterns in previous loan approval and rejection.
+13. Generate business insights related to loan repayment difficulties.
+
+Datasets
+
+1. Application Data
+
+The application_data.csv dataset contains information about current loan applicants.
+
+The dataset includes information related to:
+
+1. Customer demographics
+2. Income
+3. Credit amount
+4. Annuity
+5. Goods price
+6. Education
+7. Occupation
+8. Family status
+9. Housing type
+10. Employment
+11. Car ownership
+12. Real estate ownership
+13. Social surroundings
+14. External credit scores
+15. Previous credit bureau information
+16. Loan payment status
+
+2. Previous Application Data
+
+The previous_application.csv dataset contains information about customers' previous loan applications.
+
+It includes information related to:
+
+1. Previous loan applications
+2. Contract status
+3. Loan purpose
+4. Previous credit amount
+5. Previous annuity
+6. Client type
+7. Application channel
+8. Previous application status
+
+Tools and Technologies
+
+1. Python
+2. Pandas
+3. NumPy
+4. Matplotlib
+5. Seaborn
+
+Project Workflow
+
+1. Data Loading
+
+Both datasets were imported using Pandas.
+
+The datasets were initially inspected using:
+
+1. head()
+2. shape
+3. info()
+4. describe()
+5. isnull().sum()
+
+This helped understand the size, structure, data types and missing values in the datasets.
+
+2. Missing Value Analysis
+
+The percentage of missing values was calculated for each column.
+
+Columns containing more than 35% missing values were identified and removed.
+
+For the remaining variables, different imputation techniques were used depending on the type of variable.
+
+3. Missing Value Imputation
+
+Categorical and discrete numerical variables were imputed using their mode.
+
+Continuous numerical variables such as EXT_SOURCE_2 and EXT_SOURCE_3 were imputed using the median.
+
+OCCUPATION_TYPE was not immediately imputed because the missing values showed a relationship with income type and required further investigation.
+
+4. Handling Missing Values in Occupation and Organization
+
+Further analysis showed that many missing values in ORGANIZATION_TYPE were associated with pensioners.
+
+Based on this observed pattern:
+
+1. ORGANIZATION_TYPE missing/XNA values were treated as Pensioner.
+2. Missing OCCUPATION_TYPE values were also imputed as Pensioner.
+
+5. Handling Date-Related Variables
+
+Several variables were stored as negative numbers because they represented the number of days before the current application.
+
+The DAYS-related columns were converted to positive values for easier interpretation.
+
+The DAYS_BIRTH variable was then converted from days into years.
+
+6. Age Group Creation
+
+Customers were divided into four age groups:
+
+1. Very Young
+2. Young
+3. Middle Age
+4. Senior Citizen
+
+This made it easier to compare loan application and payment difficulty patterns across different age groups.
+
+7. Income Categorization
+
+AMT_INCOME_TOTAL was divided into five quantile-based categories:
+
+1. VERY_LOW
+2. LOW
+3. MEDIUM
+4. HIGH
+5. VERY_HIGH
+
+8. Credit Amount Categorization
+
+AMT_CREDIT was also divided into five quantile-based categories:
+
+1. VERY_LOW
+2. LOW
+3. MEDIUM
+4. HIGH
+5. VERY_HIGH
+
+9. Binary Variable Conversion
+
+The following variables were converted from Y/N format into 1/0 format:
+
+1. FLAG_OWN_CAR
+2. FLAG_OWN_REALTY
+
+10. Handling Gender Data
+
+The XNA value in CODE_GENDER was treated as a missing value and replaced with F.
+
+11. Removing Unnecessary Variables
+
+Variables that did not provide meaningful information for the analysis were removed.
+
+These included several communication flags, document flags and other low-value variables.
+
+12. Outlier Analysis
+
+Boxplots were created for numerical variables to identify potential outliers.
+
+Important observations included:
+
+1. CNT_CHILDREN contains outliers for customers with more than five children.
+2. AMT_INCOME_TOTAL contains a large number of outliers.
+3. AMT_CREDIT contains many outliers.
+4. AMT_ANNUITY contains several outliers.
+5. AMT_GOODS_PRICE contains many outliers.
+6. DAYS_REGISTRATION and DAYS_LAST_PHONE_CHANGE contain several outliers.
+7. DAYS_EMPLOYED contains an extreme value around 375,000.
+8. CNT_FAM_MEMBERS contains some outliers.
+9. DAYS_BIRTH, DAYS_ID_PUBLISH, EXT_SOURCE_2 and EXT_SOURCE_3 did not show significant outliers.
+
+13. Target Variable Analysis
+
+The dataset was highly imbalanced.
+
+Approximately:
+
+1. 8.1% of customers belong to TARGET 1.
+2. 91.9% of customers belong to TARGET 0.
+
+The ratio between the non-defaulted and defaulted populations was approximately 11.3 to 1.
+
+Because of this imbalance, comparisons between TARGET 0 and TARGET 1 were performed carefully.
+
+14. Customer Segmentation by Target
+
+The dataset was divided into two groups:
+
+1. Target0 = TARGET 0
+2. Target1 = TARGET 1
+
+These groups were used throughout the analysis to compare customers with and without payment difficulties.
+
+15. Gender Analysis
+
+The analysis showed that female customers represented a larger proportion of loan applicants than male customers.
+
+Gender distributions were compared separately for TARGET 0 and TARGET 1 to understand differences in payment difficulty patterns.
+
+16. Age Analysis
+
+The Middle Age group, representing customers between approximately 35 and 60 years, was the most frequent applicant group.
+
+This group also showed a relatively high number of customers experiencing payment difficulties.
+
+Very Young and Senior Citizen groups showed comparatively fewer payment difficulties.
+
+17. Organization Analysis
+
+The most common organization types among applicants included:
+
+1. Business Entity Type 3
+2. Self-employed
+3. Other
+4. Medicine
+5. Government
+6. Business Entity Type 2
+
+Some organization types such as Industry 13, Trade 4, Trade 5 and Industry 8 had comparatively fewer loan applications.
+
+18. Categorical Variable Analysis
+
+Categorical variables were analyzed separately for customers with and without payment difficulties.
+
+The analysis included:
+
+1. Contract type
+2. Type of accompanying person
+3. Income type
+4. Education type
+5. Family status
+6. Housing type
+7. Occupation type
+8. Application weekday
+9. Income range
+10. Credit amount range
+
+19. Contract Type Analysis
+
+Cash loans represented the majority of loan applications.
+
+Revolving loans represented a much smaller proportion.
+
+Cash loans also showed a higher proportion of payment difficulties compared with revolving loans.
+
+20. Income Type Analysis
+
+Working customers represented a large proportion of applicants.
+
+Other income categories included:
+
+1. Commercial associates
+2. Pensioners
+3. State servants
+4. Businessmen
+5. Students
+6. Unemployed customers
+
+The analysis showed differences in payment difficulty percentages across these income categories.
+
+21. Education Analysis
+
+Customers with Secondary or Secondary/Special Education represented a large proportion of applicants.
+
+These groups also showed relatively higher payment difficulty rates.
+
+Customers with higher education and academic degrees generally showed lower payment difficulty percentages.
+
+22. Family Status Analysis
+
+Married customers represented the largest applicant group.
+
+The analysis also compared payment difficulty patterns across:
+
+1. Married
+2. Single
+3. Civil marriage
+4. Widowed
+5. Separated
+
+23. Housing Type Analysis
+
+Most applicants lived in houses or apartments.
+
+Applicants living in rented apartments and with parents showed relatively higher payment difficulty percentages in the analysis.
+
+24. Occupation Analysis
+
+Low-skilled laborers showed a relatively high percentage of payment difficulties.
+
+Managers, high-skill technology staff and accountants showed relatively lower payment difficulty percentages.
+
+25. Income and Credit Analysis
+
+Numerical variables were analyzed using distribution plots.
+
+The analysis focused on:
+
+1. AMT_INCOME_TOTAL
+2. AMT_CREDIT
+3. AMT_ANNUITY
+4. AMT_GOODS_PRICE
+
+The distributions for TARGET 0 and TARGET 1 were compared.
+
+The Target 1 population showed a wider distribution for income, indicating greater variation in financial characteristics among customers experiencing payment difficulties.
+
+26. Bivariate Analysis
+
+Bivariate analysis was performed using combinations of numerical and categorical variables.
+
+The analysis included:
+
+1. Income vs Education vs Family Status
+2. Credit Amount vs Education vs Family Status
+
+The analysis showed that customers with higher education generally had higher income levels.
+
+Several education categories also contained customers with large credit amounts and a significant number of outliers.
+
+27. Categorical Bivariate Analysis
+
+A custom biplot function was created to compare:
+
+1. Number of customers in each category.
+2. Percentage of customers experiencing payment difficulties in each category.
+
+This analysis was performed for:
+
+1. Income range
+2. Income type
+3. Contract type
+4. Education type
+5. Housing type
+6. Occupation type
+
+28. Income Range Analysis
+
+Customers with low income showed relatively higher payment difficulty risk.
+
+Customers with high salaries showed comparatively lower payment difficulty percentages.
+
+29. Occupation Analysis
+
+Low-skilled laborers showed one of the highest payment difficulty percentages.
+
+Managers, high-skill technology staff and accountants showed relatively lower payment difficulty percentages.
+
+30. Education Analysis
+
+Academic degree and higher education categories showed relatively lower payment difficulty percentages.
+
+Lower Secondary and Secondary/Special Education showed relatively higher payment difficulty percentages.
+
+31. Correlation Analysis
+
+Correlation analysis was performed separately for:
+
+1. TARGET 0
+2. TARGET 1
+
+Pair plots were used to visually analyze relationships between numerical variables.
+
+The variables analyzed included:
+
+1. AMT_CREDIT
+2. AMT_ANNUITY
+3. AMT_INCOME_TOTAL
+4. AMT_GOODS_PRICE
+5. DAYS_BIRTH
+6. CNT_CHILDREN
+7. DAYS_EMPLOYED
+
+32. Important Correlations
+
+AMT_CREDIT and AMT_GOODS_PRICE showed a strong positive relationship.
+
+AMT_CREDIT and AMT_ANNUITY also showed a strong positive relationship.
+
+This indicates that customers taking higher-value loans generally have higher annuity payments and higher goods prices associated with the loan.
+
+The relationship between AMT_CREDIT, AMT_GOODS_PRICE and AMT_ANNUITY was observed for both TARGET 0 and TARGET 1.
+
+33. Spearman Correlation Heatmaps
+
+Spearman correlation was calculated separately for TARGET 0 and TARGET 1.
+
+Heatmaps were created to visualize relationships between numerical variables.
+
+Some observations included:
+
+1. AMT_CREDIT showed an inverse relationship with DAYS_BIRTH.
+2. AMT_CREDIT showed an inverse relationship with CNT_CHILDREN.
+3. AMT_INCOME_TOTAL showed an inverse relationship with CNT_CHILDREN.
+4. AMT_CREDIT and AMT_INCOME_TOTAL showed relationships with population density-related variables.
+5. Similar correlation patterns were observed for both target groups.
+
+34. Top Correlations
+
+The top 10 correlations were extracted separately for TARGET 0 and TARGET 1.
+
+The analysis showed that the strongest correlations in both groups were generally at similar levels.
+
+35. Previous Application Data
+
+The previous_application.csv dataset was analyzed separately.
+
+Initial analysis included:
+
+1. Shape
+2. Data types
+3. Descriptive statistics
+4. Missing value percentages
+5. Missing value distribution
+
+36. Cleaning Previous Application Data
+
+Columns containing more than 35% missing values were removed.
+
+Remaining missing values were handled using appropriate imputation methods.
+
+For example:
+
+1. AMT_GOODS_PRICE was imputed using the median.
+2. AMT_ANNUITY was imputed using the mode.
+3. CNT_PAYMENT was imputed using the mode.
+
+37. Handling Invalid Values
+
+XNA and XAP values were removed from NAME_CASH_LOAN_PURPOSE where they represented invalid or non-informative categories for the analysis.
+
+38. Merging Datasets
+
+The application dataset and previous application dataset were merged using:
+
+SK_ID_CURR
+
+An inner join was used to connect current application information with previous application information.
+
+39. Previous Application Analysis
+
+The merged dataset was used to analyze customers' previous loan application behavior.
+
+The analysis included:
+
+1. Client type
+2. Contract status
+3. Loan purpose
+4. Previous application channel
+5. Previous loan amount
+6. Previous application outcomes
+
+40. Client Type Analysis
+
+Approximately 80.7% of the clients in the previous application data were repeat customers.
+
+Approximately 14.5% were new customers.
+
+41. Previous Contract Status
+
+The previous application contract status showed approximately:
+
+1. Approved: 38.8%
+2. Refused: 58.5%
+3. Canceled: 2.3%
+4. Unused offer: 0.31%
+
+42. Loan Purpose Analysis
+
+Loan purposes were compared with previous contract status.
+
+Repairs represented a major category for loan rejections.
+
+For Education and Medicine purposes, the numbers of approved and rejected applications were relatively similar.
+
+Paying other loans and buying a new car showed comparatively higher rejection counts than approvals.
+
+43. Loan Purpose and Payment Difficulty
+
+Loan purposes were also compared against TARGET.
+
+Repairs showed a high number of customers in both target groups.
+
+Medicine showed a relatively high number of customers experiencing payment difficulties compared with Education.
+
+Business Insights
+
+Based on the exploratory analysis, several patterns were identified.
+
+1. Customers with Secondary or Secondary/Special Education showed relatively higher payment difficulty percentages.
+
+2. Customers with higher education and academic degrees generally showed lower payment difficulty percentages.
+
+3. Low-skilled laborers showed a relatively high percentage of payment difficulties.
+
+4. Low-income customers showed higher payment difficulty percentages than high-income customers.
+
+5. Cash loans represented the majority of applications and showed higher payment difficulty percentages than revolving loans.
+
+6. Customers in the Middle Age group represented a large proportion of applicants and also showed significant payment difficulties.
+
+7. Applicants living in rented apartments and with parents showed relatively higher payment difficulty percentages in some of the analyses.
+
+8. AMT_CREDIT, AMT_ANNUITY and AMT_GOODS_PRICE showed strong relationships with one another.
+
+9. Previous applications showed a higher number of refused applications than approved applications.
+
+10. Repairs represented an important loan purpose associated with previous loan rejection.
+
+Key Findings
+
+1. The dataset is highly imbalanced, with approximately 8.1% TARGET 1 and 91.9% TARGET 0.
+
+2. Education level, occupation, income, housing type and family status showed differences between customers with and without payment difficulties.
+
+3. Low-skilled laborers showed one of the highest payment difficulty percentages.
+
+4. Lower Secondary Education showed a relatively high payment difficulty percentage.
+
+5. Higher education and academic degree groups generally showed lower payment difficulty percentages.
+
+6. Low and medium income groups showed higher payment difficulty percentages compared with high-income groups.
+
+7. AMT_CREDIT, AMT_ANNUITY and AMT_GOODS_PRICE were strongly correlated.
+
+8. Previous applications showed more rejected applications than approved applications.
+
+9. Loan purpose was also associated with differences in previous application outcomes.
+
+Conclusion
+
+This project demonstrates how Exploratory Data Analysis can be used to understand loan repayment behavior and identify patterns associated with payment difficulties.
+
+The analysis covered data cleaning, missing value treatment, outlier analysis, target imbalance, univariate analysis, bivariate analysis, categorical analysis, numerical analysis, correlation analysis and previous application analysis.
+
+The findings suggest that factors such as income, education, occupation, age, housing type, loan amount and previous loan application behavior can provide useful insights into customer payment patterns.
+
+The analysis can help financial institutions better understand their customer base and identify areas that may require further investigation when evaluating loan applications.
+
+Project Structure
+
+Home-Credit-EDA/
+
+1. application_data.csv
+2. previous_application.csv
+3. EDA_Final_Assignment.ipynb
+4. README.md
+
+Author
+
+Navneet Kumar
+
+Skills Demonstrated
+
+Python
+Pandas
+NumPy
+Matplotlib
+Seaborn
+Data Cleaning
+Exploratory Data Analysis
+Missing Value Treatment
+Outlier Analysis
+Univariate Analysis
+Bivariate Analysis
+Correlation Analysis
+Data Visualization
+Business Insights
