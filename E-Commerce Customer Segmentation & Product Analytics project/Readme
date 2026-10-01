@@ -1,0 +1,86 @@
+🛒 E-Commerce Customer Segmentation & Product Performance Analytics
+Project Overview
+This project analyzes a transactional e-commerce dataset to evaluate product revenue performance, regional sales trends, and customer value distribution. By combining Python-based exploratory data analysis (EDA) and machine learning with an interactive Power BI dashboard, this project transforms raw transaction logs into actionable commercial insights.
+
+The workflow bridges the gap between product-level performance tracking and behavioral customer segmentation (RFM & K-Means Clustering) to help businesses identify top revenue drivers and protect high-value customer cohorts.
+
+Built Using
+Python — Data cleaning, feature engineering, statistical analysis, and machine learning clustering
+
+Pandas & NumPy — Data manipulation, aggregation, and array transformations
+
+Scikit-Learn — Unsupervised machine learning (K-Means Clustering for RFM segmentation)
+
+Matplotlib & Seaborn — Advanced data visualization and trend plotting
+
+Power BI — Interactive executive dashboarding and stakeholder reporting
+
+Dataset Overview
+The dataset consists of detailed international e-commerce transaction records containing information about invoice numbers, stock codes, product descriptions, quantities, invoice dates, unit prices, customer IDs, and country regions.
+
+Data preparation involved:
+
+Handling missing values and filtering out cancelled or anomalous transactions (e.g., negative quantities/returns).
+
+Converting date fields and engineering aggregate metrics (Recency, Frequency, Monetary values per customer).
+
+Creating calculated fields for total revenue and estimated profit proxies.
+
+Exploratory Data Analysis & Business Insights
+Python was utilized to investigate core commercial questions before building the clustering model and dashboard:
+
+1. Product Revenue & Profitability Analysis
+Top Revenue Drivers: Grouping transactions by product description revealed a heavy reliance on standout best-sellers, led by the Regency Cakestand 3 Tier (£174K+ in total revenue).
+
+Profit Proxy: Due to the absence of explicit cost-of-goods-sold (COGS) data, an industry-standard 30% gross margin benchmark was modeled to estimate product profitability and highlight high-return inventory items.
+
+2. Regional & Monthly Trend Diagnostics
+Core Market Dominance: Time-series aggregation across 38 international regions proved that the United Kingdom accounts for the vast majority of transaction volume and revenue.
+
+Seasonal Peak Analysis: The UK market displayed massive Q4 holiday momentum, peaking dramatically in November before a sharp drop in December (identified as a data collection truncation artifact rather than business churn).
+
+3. Customer Value Segmentation (RFM + K-Means)
+Customers were segmented based on their purchasing behavior:
+
+Champions: High spenders with recent and frequent visits.
+
+Core Regulars: Steady, reliable buyers forming the baseline of daily volume.
+
+At-Risk / Lost: Dormant customers requiring re-engagement strategies.
+
+Power BI Dashboard Structure
+The Power BI dashboard translates the analytical findings into a clean, executive-ready interface featuring dynamic interactivity:
+
+Page 1: Customer Volume & Segment Distribution
+
+Clustered column charts tracking customer counts across Champions, Core Regulars, and At-Risk/Lost tiers.
+
+Page 2: Financial Impact & Revenue Contribution
+
+Revenue breakdown charts highlighting exactly which segment drives the highest monetary returns.
+
+Page 3: Recency vs. Monetary Scatter Plot
+
+An interactive customer-level scatter plot color-coded by cluster segments to visually map customer lifetime value against activity recency.
+
+Interactive Navigation:
+
+Modern tile slicers enabling stakeholders to instantly filter the entire canvas by specific customer segments.
+
+Skills & Capabilities Demonstrated
+Advanced Data Cleaning & Wrangling (Pandas)
+
+Exploratory Data Analysis (EDA) & Time-Series Trend Breakdown
+
+Unsupervised Machine Learning (K-Means Clustering & RFM Modeling)
+
+Feature Engineering & Proxy Metric Modeling (Estimated Profit Benchmarks)
+
+Data Visualization (Matplotlib, Seaborn, Power BI)
+
+Executive Dashboard Development & Slicer Interactivity
+
+Business Insight Generation & Strategic Storytelling
+
+Project Objective
+The primary objective of this project is to demonstrate how raw transactional data can be systematically cleaned, modeled, and visualized to answer critical business questions: Who are our most valuable customers, which products drive our top-line growth, and how do regional sales trends evolve over time?
