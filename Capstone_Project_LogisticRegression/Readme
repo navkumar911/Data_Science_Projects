@@ -1,0 +1,342 @@
+Lead Scoring - Logistic Regression
+
+Project Overview
+
+X Education is an online education company that attracts potential customers, or leads, through various marketing channels. However, only around 30% of the leads convert into customers.
+
+The objective of this project is to build a Logistic Regression model that can identify leads with a higher probability of conversion. The model can help the sales team prioritize leads and focus their efforts on potential customers.
+
+Problem Statement
+
+X Education wants to identify its most promising leads, also known as "Hot Leads".
+
+The project aims to build a Logistic Regression model that predicts the probability of a lead converting into a customer based on factors such as lead source, website activity, occupation, previous interactions and other available information.
+
+The original business requirement was to assign a lead score between 0 and 100, where a higher score represents a higher likelihood of conversion.
+
+Objectives
+
+1. Clean and prepare the lead dataset.
+2. Handle missing values and irrelevant variables.
+3. Convert categorical variables into numerical variables using dummy variables.
+4. Split the dataset into training and testing datasets.
+5. Scale relevant numerical variables.
+6. Build a Logistic Regression model.
+7. Use Recursive Feature Elimination (RFE) for feature selection.
+8. Evaluate variables using p-values and Variance Inflation Factor (VIF).
+9. Evaluate the model using accuracy, sensitivity, specificity, precision and recall.
+10. Evaluate model performance using the ROC-AUC curve.
+11. Identify an appropriate probability cutoff for classification.
+12. Test the final model on unseen test data.
+
+Dataset
+
+The project uses the Leads.csv dataset provided for the X Education lead scoring case study.
+
+The dataset contains information about leads, including:
+
+1. Lead Origin
+2. Lead Source
+3. Total Visits
+4. Total Time Spent on Website
+5. Page Views Per Visit
+6. Specialization
+7. Current Occupation
+8. Last Activity
+9. Last Notable Activity
+10. Do Not Email
+11. Conversion status
+
+The target variable is:
+
+Converted
+
+1. 1 = Lead converted into a customer
+2. 0 = Lead did not convert
+
+Tools and Technologies
+
+1. Python
+2. Pandas
+3. NumPy
+4. Matplotlib
+5. Scikit-learn
+6. Statsmodels
+
+Machine Learning Techniques
+
+1. Logistic Regression
+2. Recursive Feature Elimination (RFE)
+3. Min-Max Scaling
+4. ROC-AUC Analysis
+5. Confusion Matrix Analysis
+6. Probability Cutoff Optimization
+7. Precision-Recall Analysis
+8. Variance Inflation Factor (VIF)
+9. P-value based feature selection
+
+Project Workflow
+
+1. Data Loading
+
+The Leads.csv dataset was imported using Pandas.
+
+Initial inspection was performed using:
+
+1. head()
+2. shape
+3. describe()
+4. info()
+5. isnull().sum()
+
+This was done to understand the structure, size, data types and missing values in the dataset.
+
+2. Data Cleaning
+
+The dataset initially contained a large number of missing values.
+
+Columns containing more than 3,000 missing values were removed because the amount of missing information made them unsuitable for further analysis.
+
+The City and Country columns were also removed.
+
+Columns containing a large number of "Select" values were reviewed. Lead Profile and How did you hear about X Education were removed because the "Select" category provided limited useful information.
+
+Several columns with extremely low variation were also removed. These included:
+
+1. Do Not Call
+2. Search
+3. Magazine
+4. Newspaper Article
+5. X Education Forums
+6. Newspaper
+7. Digital Advertisement
+8. Through Recommendations
+9. Receive More Updates About Our Courses
+10. Update me on Supply Chain Content
+11. Get updates on DM Content
+12. I agree to pay the amount through cheque
+
+The column What matters most to you in choosing a course was also removed because one category dominated almost the entire column.
+
+Rows containing missing values in important variables such as current occupation, total visits, lead source and specialization were removed.
+
+After the cleaning process, 6,373 rows remained from the original 9,240 records, retaining approximately 69% of the dataset.
+
+3. Removing Identifier Columns
+
+Prospect ID and Lead Number were removed because they are identifiers and do not provide useful predictive information for the model.
+
+4. Creating Dummy Variables
+
+Categorical variables were converted into numerical variables using Pandas get_dummies().
+
+Dummy variables were created for variables such as:
+
+1. Lead Origin
+2. Lead Source
+3. Do Not Email
+4. Last Activity
+5. Current Occupation
+6. Specialization
+7. A free copy of Mastering The Interview
+8. Last Notable Activity
+
+The original categorical columns were then removed after their dummy variables were created.
+
+5. Train-Test Split
+
+The dataset was divided into:
+
+1. 70% training data
+2. 30% testing data
+
+A random state of 100 was used to make the split reproducible.
+
+6. Feature Scaling
+
+Min-Max Scaling was applied to the following numerical variables:
+
+1. TotalVisits
+2. Page Views Per Visit
+3. Total Time Spent on Website
+
+Scaling was performed so that these numerical variables were brought to a comparable range before model development.
+
+7. Correlation Analysis
+
+A correlation analysis was performed to understand relationships between the numerical variables.
+
+8. Logistic Regression
+
+Logistic Regression was selected because the target variable, Converted, is binary.
+
+The model estimates the probability that a lead will convert into a customer.
+
+A balanced class weight was used in the initial Logistic Regression model.
+
+9. Recursive Feature Elimination
+
+Recursive Feature Elimination, or RFE, was used to reduce the number of variables and identify the most relevant features.
+
+The initial RFE model selected 15 variables from the available features.
+
+The selected variables were then used for further statistical analysis.
+
+10. Statistical Model Building
+
+Statsmodels was used to build a Generalized Linear Model with a Binomial family and Logit link.
+
+The selected variables were evaluated using p-values.
+
+Variables with high p-values were reviewed and removed during the model refinement process.
+
+11. Variance Inflation Factor
+
+Variance Inflation Factor, or VIF, was used to check for multicollinearity between the independent variables.
+
+Variables with high VIF values indicate that the variable may have a strong relationship with other independent variables.
+
+After feature refinement, the remaining variables had acceptable VIF values.
+
+12. Final Model
+
+After reviewing p-values and VIF, the final model used Total Time Spent on Website as the main predictive variable.
+
+The final model showed a statistically significant relationship between Total Time Spent on Website and the probability of conversion.
+
+13. Model Evaluation
+
+The model was evaluated using several classification metrics.
+
+Accuracy
+
+The initial model using a 0.5 probability cutoff achieved approximately 68.39% accuracy on the training data.
+
+Sensitivity
+
+The initial sensitivity was approximately 54.68%.
+
+Specificity
+
+The initial specificity was approximately 81.14%.
+
+14. ROC-AUC
+
+An ROC curve was created to evaluate the model across different probability thresholds.
+
+The model achieved an ROC-AUC of approximately 0.86 during the training evaluation.
+
+15. Probability Cutoff Optimization
+
+A probability of 0.5 was initially used as the classification threshold.
+
+However, a 0.5 cutoff is not necessarily the best threshold for a business problem.
+
+Different probability cutoffs were therefore tested and compared using:
+
+1. Accuracy
+2. Sensitivity
+3. Specificity
+
+A cutoff of approximately 0.42 was explored as a balance between sensitivity and specificity.
+
+Using the 0.42 cutoff on the training data resulted in:
+
+1. Accuracy: approximately 62.39%
+2. Sensitivity: approximately 60.82%
+3. Specificity: approximately 63.84%
+
+16. Test Set Evaluation
+
+The final model was evaluated on the unseen test dataset using the selected 0.42 probability cutoff.
+
+The test-set results were:
+
+1. Accuracy: approximately 62.40%
+2. Sensitivity: approximately 61.79%
+3. Specificity: approximately 62.95%
+
+The test-set confusion matrix was:
+
+[[627, 369],
+ [350, 566]]
+
+17. Precision and Recall
+
+Precision and recall were also evaluated to understand the trade-off between identifying potential converters and avoiding incorrect positive predictions.
+
+Using the later 0.44 cutoff analysis on the training data:
+
+1. Precision: approximately 65.96%
+2. Recall: approximately 59.05%
+
+Business Interpretation
+
+The purpose of the model is to help X Education identify leads that are more likely to convert.
+
+The predicted conversion probability can be used to prioritize leads.
+
+For example:
+
+1. Leads with higher predicted probabilities can be treated as higher-priority leads.
+2. Leads with lower predicted probabilities can receive lower priority.
+3. The sales team can focus its limited time and resources on leads identified as having higher conversion potential.
+
+The model therefore provides a data-driven approach to lead prioritization.
+
+Key Learnings
+
+1. Data cleaning and missing-value treatment
+2. Categorical variable encoding
+3. Train-test splitting
+4. Feature scaling
+5. Logistic Regression
+6. Recursive Feature Elimination
+7. P-value based feature selection
+8. Multicollinearity analysis using VIF
+9. Confusion Matrix
+10. Accuracy
+11. Sensitivity
+12. Specificity
+13. Precision
+14. Recall
+15. ROC Curve
+16. ROC-AUC
+17. Probability cutoff optimization
+
+Project Structure
+
+Lead-Scoring-Project/
+
+1. Leads.csv
+2. Lead_Scoring_Logistic_Regression.ipynb
+3. README.md
+
+Conclusion
+
+This project demonstrates how Logistic Regression and statistical feature selection techniques can be used to predict lead conversion.
+
+The project involved extensive data cleaning, categorical variable encoding, feature scaling, RFE-based feature selection, p-value analysis, VIF analysis and model evaluation.
+
+The final model was evaluated using multiple classification metrics and tested on unseen data.
+
+The predicted conversion probabilities can be used as a basis for prioritizing leads and supporting the sales team's lead-targeting strategy.
+
+Author
+
+Navneet Kumar
+
+Skills Demonstrated
+
+Python
+Pandas
+NumPy
+Scikit-learn
+Statsmodels
+Logistic Regression
+RFE
+Data Cleaning
+Feature Selection
+Statistical Analysis
+Machine Learning
+Model Evaluation
