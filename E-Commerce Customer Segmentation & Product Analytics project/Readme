@@ -1,50 +1,50 @@
-# 🛒 E-Commerce Customer Segmentation & Product Performance Analytics
+🛒 E-Commerce Customer Segmentation & Product Performance Analytics
 
-## Project Overview
+1. Project Overview
 This project analyzes an e-commerce transactional dataset to evaluate product revenue performance, regional sales trends, and customer value distribution. By leveraging Python for exploratory data analysis (EDA), time-series diagnostics, and machine learning, this project transforms raw transaction logs into actionable commercial insights.
 
 The workflow bridges the gap between **product-level performance tracking** and **behavioral customer segmentation (RFM & K-Means Clustering)** entirely through Python code and data visualization.
 
 ---
 
-## Repository Files
-* **`K_Mean_Clustering_Practice.ipynb`** — The primary Jupyter Notebook containing data cleaning, product/regional EDA, and K-Means machine learning modeling.
-* **`Online Retail (1).xlsx`** — The raw e-commerce transaction dataset.
-* **`Customer_Segments_Output.xls`** — The final processed output file containing customer-level RFM metrics and assigned cluster segments.
+2. Repository Files
+2.1.`K_Mean_Clustering_Practice.ipynb` — The primary Jupyter Notebook containing data cleaning, product/regional EDA, and K-Means machine learning modeling.
+2.2. `Online Retail (1).xlsx` — The raw e-commerce transaction dataset.
+2.3. `Customer_Segments_Output.xls` — The final processed output file containing customer-level RFM metrics and assigned cluster segments.
 
 ---
 
-## Built Using
-* **Python** — Data cleaning, feature engineering, and machine learning modeling
-* **Pandas & NumPy** — Data manipulation, aggregation, and array transformations
-* **Scikit-Learn** — Unsupervised machine learning (K-Means Clustering for RFM segmentation)
-* **Matplotlib & Seaborn** — Advanced data visualization and trend plotting
+3. Built Using
+3.1. Python — Data cleaning, feature engineering, and machine learning modeling
+3.2. Pandas & NumPy — Data manipulation, aggregation, and array transformations
+3.3. Scikit-Learn — Unsupervised machine learning (K-Means Clustering for RFM segmentation)
+3.4. Matplotlib & Seaborn — Advanced data visualization and trend plotting
 
 ---
 
-## Exploratory Data Analysis & Business Insights
+4. Exploratory Data Analysis & Business Insights
 The project investigates key commercial questions directly within the notebook:
 
-### 1. Product Revenue & Profitability Analysis
-* **Top Revenue Drivers:** Grouping transactions by product description revealed a heavy reliance on standout best-sellers, led by the *Regency Cakestand 3 Tier* (£174K+ in total revenue).
-* **Profit Proxy:** Due to the absence of explicit cost-of-goods-sold (COGS) data, an industry-standard **30% gross margin benchmark** was modeled to estimate product profitability and highlight high-return inventory items.
+4.1. Product Revenue & Profitability Analysis
+- Top Revenue Drivers: Grouping transactions by product description revealed a heavy reliance on standout best-sellers, led by the *Regency Cakestand 3 Tier* (£174K+ in total revenue).
+- Profit Proxy: Due to the absence of explicit cost-of-goods-sold (COGS) data, an industry-standard **30% gross margin benchmark** was modeled to estimate product profitability and highlight high-return inventory items.
 
-### 2. Regional & Monthly Trend Diagnostics
-* **Core Market Dominance:** Time-series aggregation across international regions proved that the **United Kingdom** accounts for the vast majority of transaction volume and revenue.
-* **Seasonal Peak Analysis:** The UK market displayed massive Q4 holiday momentum, peaking dramatically in November before a sharp drop in December (identified as a data collection truncation artifact rather than business churn).
+4.2. Regional & Monthly Trend Diagnostics
+- Core Market Dominance: Time-series aggregation across international regions proved that the **United Kingdom** accounts for the vast majority of transaction volume and revenue.
+- Seasonal Peak Analysis: The UK market displayed massive Q4 holiday momentum, peaking dramatically in November before a sharp drop in December (identified as a data collection truncation artifact rather than business churn).
 
-### 3. Customer Value Segmentation (RFM + K-Means)
-* Customers were categorized based on their purchasing behavior:
-  * **Champions:** High spenders with recent and frequent visits.
-  * **Core Regulars:** Steady, reliable buyers forming the baseline of daily volume.
-  * **At-Risk / Lost:** Dormant customers requiring re-engagement strategies.
+4.3. Customer Value Segmentation (RFM + K-Means)
+- Customers were categorized based on their purchasing behavior:
+  * Champions: High spenders with recent and frequent visits.
+  * Core Regulars: Steady, reliable buyers forming the baseline of daily volume.
+  * At-Risk / Lost: Dormant customers requiring re-engagement strategies.
 
 ---
 
-## Skills & Capabilities Demonstrated
-* Advanced Data Cleaning & Wrangling (Pandas)
-* Exploratory Data Analysis (EDA) & Time-Series Trend Breakdown
-* Unsupervised Machine Learning (K-Means Clustering & RFM Modeling)
-* Feature Engineering & Proxy Metric Modeling (Estimated Profit Benchmarks)
-* Data Visualization & Python Plotting (Matplotlib, Seaborn)
-* Business Insight Generation & Strategic Storytelling
+5. Skills & Capabilities Demonstrated
+5.1. Advanced Data Cleaning & Wrangling (Pandas)
+5.2. Exploratory Data Analysis (EDA) & Time-Series Trend Breakdown
+5.3. Unsupervised Machine Learning (K-Means Clustering & RFM Modeling)
+5.4. Feature Engineering & Proxy Metric Modeling (Estimated Profit Benchmarks)
+5.5. Data Visualization & Python Plotting (Matplotlib, Seaborn)
+5.6. Business Insight Generation & Strategic Storytelling
