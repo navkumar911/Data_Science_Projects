@@ -1,0 +1,283 @@
+IMDB Movie Data Analysis Using SQL
+
+Project Overview
+
+This project focuses on analyzing an IMDB movie dataset using SQL.
+
+The objective is to extract meaningful insights about movies, genres, ratings, production companies, directors and actors.
+
+The project contains a series of SQL queries that answer business-oriented questions using different SQL concepts such as filtering, aggregation, joins, Common Table Expressions, window functions, ranking, conditional logic and date functions.
+
+The analysis is performed on the IMDB database.
+
+Database Tables
+
+The project uses the following tables:
+
+1. movie
+2. genre
+3. ratings
+4. names
+5. role_mapping
+6. director_mapping
+
+Key Analysis Areas
+
+1. Movie production trends
+2. Genre analysis
+3. Movie duration analysis
+4. Movie ratings
+5. Production company analysis
+6. Director analysis
+7. Actor and actress analysis
+8. Movie popularity based on votes
+9. Worldwide gross income
+10. Previous and current movie performance
+11. Running totals and moving averages
+12. Ranking and classification of movies
+
+SQL Concepts Used
+
+1. SELECT
+2. WHERE
+3. GROUP BY
+4. HAVING
+5. ORDER BY
+6. DISTINCT
+7. COUNT
+8. SUM
+9. AVG
+10. MIN
+11. MAX
+12. ROUND
+13. CASE WHEN
+14. LIKE
+15. BETWEEN
+16. INNER JOIN
+17. Common Table Expressions (CTEs)
+18. Subqueries
+19. RANK()
+20. DENSE_RANK()
+21. ROW_NUMBER()
+22. LAG()
+23. PARTITION BY
+24. Aggregate functions
+25. Date functions
+26. Conditional aggregation
+27. Weighted averages
+
+Project Questions and Analysis
+
+1. Database Exploration
+
+The project begins by finding the total number of rows in each table.
+
+Tables analyzed:
+
+1. director_mapping
+2. genre
+3. movie
+4. names
+5. ratings
+6. role_mapping
+
+This provides an initial understanding of the size of each table.
+
+2. Missing Value Analysis
+
+The movie table was analyzed to identify columns containing NULL values.
+
+The analysis covered:
+
+1. title
+2. year
+3. date_published
+4. duration
+5. country
+6. worldwide gross income
+7. languages
+8. production company
+
+Conditional aggregation using CASE WHEN was used to count NULL values.
+
+3. Movie Production by Year
+
+The number of movies released in each year was calculated using GROUP BY.
+
+This was followed by a month-wise analysis to understand seasonal movie production trends.
+
+MONTH() was used to extract the month from the date_published column.
+
+4. Movies Produced in USA and India
+
+The number of movies produced in the USA or India during 2019 was calculated.
+
+The LIKE operator was used to identify countries containing USA or India.
+
+5. Genre Analysis
+
+The unique genres available in the dataset were identified using DISTINCT.
+
+The number of movies produced in each genre was then calculated by joining the movie and genre tables.
+
+6. Most Frequently Produced Genre
+
+Movies were grouped by genre and counted to identify the genres with the highest number of movies.
+
+Drama was identified as one of the most frequently produced genres.
+
+7. Single-Genre Movies
+
+A subquery was used to identify movies associated with exactly one genre.
+
+GROUP BY and HAVING COUNT() were used to determine movies having only one genre.
+
+8. Average Movie Duration by Genre
+
+The average movie duration was calculated for each genre.
+
+The movie and genre tables were joined and AVG() was used to calculate the average duration.
+
+The results were rounded to make the output easier to interpret.
+
+9. Thriller Genre Ranking
+
+The thriller genre was ranked against other genres based on the number of movies produced.
+
+A Common Table Expression was created and RANK() was used to calculate the genre ranking.
+
+10. Ratings Table Analysis
+
+The minimum and maximum values of the following ratings columns were identified:
+
+1. Average rating
+2. Total votes
+3. Median rating
+
+This provided an overview of the range of values present in the ratings table.
+
+11. Top Movies by Average Rating
+
+Movies were ranked based on their average rating.
+
+DENSE_RANK() and ROW_NUMBER() were used to explore ranking behavior when multiple movies have the same rating.
+
+The analysis also considered movies sharing the same rank.
+
+12. Movie Count by Median Rating
+
+Movies were grouped by median rating to determine the number of movies associated with each median rating.
+
+The results were ordered by median rating.
+
+13. Production Houses with Highly Rated Movies
+
+Production companies were analyzed based on the number of movies having an average rating greater than 8.
+
+Production companies were ranked using a window function.
+
+14. Movies Released in March 2017
+
+The number of movies released in March 2017 in the USA was calculated for each genre.
+
+Only movies with more than 1,000 votes were considered.
+
+This analysis combined:
+
+1. Date filtering
+2. Country filtering
+3. Genre grouping
+4. Rating information
+5. Vote thresholds
+
+15. Movies Starting With "The"
+
+Movies whose titles start with "The" and have an average rating greater than 8 were identified.
+
+The movie, rating and genre were displayed.
+
+The LIKE operator was used for title filtering.
+
+16. Movies With Median Rating of 8
+
+The number of movies released between 1 April 2018 and 1 April 2019 with a median rating of 8 was calculated.
+
+The BETWEEN operator was used for date filtering.
+
+17. German vs Italian Movies
+
+The total number of votes received by German and Italian movies was compared.
+
+Conditional aggregation using CASE WHEN was used to calculate the total votes for both languages.
+
+18. NULL Value Analysis of Names Table
+
+The names table was analyzed for NULL values in:
+
+1. Name
+2. Height
+3. Date of birth
+4. Known-for movies
+
+Conditional aggregation was used to count NULL values.
+
+19. Top Directors in Top Genres
+
+The top three genres were first identified based on the number of highly rated movies.
+
+The top three directors within each of those genres were then identified.
+
+This analysis used:
+
+1. CTEs
+2. JOINs
+3. GROUP BY
+4. RANK()
+5. PARTITION BY
+
+20. Top Actors Based on Highly Rated Movies
+
+Actors whose movies had a median rating of at least 8 were identified.
+
+The actors were ranked based on the number of such movies.
+
+21. Top Production Houses by Total Votes
+
+Production companies were ranked according to the total number of votes received by their movies.
+
+SUM() was used to calculate the total votes.
+
+RANK() was then used to rank the production companies.
+
+22. Ranking Indian Actors
+
+Indian actors were analyzed based on their movie performance.
+
+The analysis considered only actors who had acted in at least five Indian movies.
+
+A weighted average rating was calculated using:
+
+Average Rating × Total Votes
+
+The weighted average was then divided by total votes.
+
+Actors were ranked using their weighted average rating, with total votes used as a tie breaker.
+
+23. Ranking Indian Hindi Actresses
+
+The top five actresses in Hindi movies released in India were identified.
+
+Only actresses who had acted in at least three Indian movies were considered.
+
+A weighted average rating based on total votes was calculated.
+
+The actresses were ranked using:
+
+1. Weighted average rating
+2. Total votes as a tie breaker
+
+24. Thriller Movie Classification
+
+Thriller movies with at least 25,000 votes were classified based on average rating.
+
+The CASE statement was used
